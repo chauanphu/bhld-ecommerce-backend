@@ -8,14 +8,13 @@ const routes = require("./routes");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "./client")))
+app.use(express.static(path.join(__dirname, "./build")))
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://bhld-95d22.as.r.appspot.com/");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 // middleware
 app.use(express.json());
 app.use(cors())
@@ -24,7 +23,7 @@ app.use(cors())
 app.use("/api", routes);
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 //set up
 app.listen(process.env.PORT || 8080, () => {
