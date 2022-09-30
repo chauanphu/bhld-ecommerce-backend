@@ -11,6 +11,8 @@ COPY package.json .
 # Install all npm packages
 RUN npm install
 
+# Install nodemon
+RUN npm install nodemon -g
 # Copy all code
 COPY . ./
 
@@ -18,5 +20,5 @@ COPY . ./
 EXPOSE 8000
 
 #
-CMD ["node", "server.js"]
+CMD ["nodemon", "index.js"]
 #######################
