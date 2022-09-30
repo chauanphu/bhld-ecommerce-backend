@@ -2,6 +2,7 @@ const db = require('./firebase')
 
 const Products = {
     _value_: [],
+
     async _updatedata_() {
         if (this._value_.length == 0) {
             snapshot = await db.collection('products').get();
@@ -24,7 +25,7 @@ const Products = {
      * @param {number} limit 
      * @returns 
      */
-    async get_all(orderby = 'category', page = 1, limit = 12) {
+    async get_all() {
         await this._updatedata_()
         let _array_ = [...this._value_]
         _array_.sort((a, b) => a.category.localeCompare(b.category))
