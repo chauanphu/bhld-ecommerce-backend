@@ -13,7 +13,10 @@ const Category = {
                 return col.find({}).toArray()
             })
         command.close()
-        return [..._array_]
+        return {
+            length: _array_.length,
+            data: [..._array_]
+        }
     }
 }
 module.exports = Category

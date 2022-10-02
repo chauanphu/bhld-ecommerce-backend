@@ -67,6 +67,13 @@ const Products = {
             length: _array_.length,
             data: [..._array_]
         }
+    },
+    async add(data) {
+        const _array_ = await command.init()
+            .then(col => {
+                return col.insertOne(data)
+            })
+        command.close()
     }
 }
 module.exports = Products
