@@ -33,6 +33,7 @@ class Command {
     }
     close() {
         this.client.close()
+        console.log('Connection Closed')
     }
 }
 

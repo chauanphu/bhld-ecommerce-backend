@@ -49,3 +49,21 @@
 //     get_related: (id) => []
 // }
 // module.exports = Products
+
+// const db = require('./firebase')
+
+const CategoryCollection = 'products'
+const Command = require('./mongodb')
+var command = new Command(CategoryCollection)
+
+const Products = {
+    async get_all() {
+        const _array_ = await command.init()
+            .then(col => {
+                return col.find({}).toArray()
+            })
+        command.close()
+        return [..._array_]
+    }
+}
+module.exports = Products

@@ -12,6 +12,7 @@ const Category = {
             .then(col => {
                 return col.find({}).toArray()
             })
+        command.close()
         return [..._array_]
     }
 }
