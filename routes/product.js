@@ -8,7 +8,7 @@ router.get('/', async function (req, res) {
     } else {
         var { length, data } = await Product.get_all()
     }
-    res.setHeader('X-Total-Count', length)
+    res.setHeader('Content-Range', length)
     res.json(data);
 });
 
