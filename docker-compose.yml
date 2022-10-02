@@ -9,7 +9,11 @@ services:
   backend:
     container_name: backend
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
     ports:
       - '8000:8000'
     depends_on:
