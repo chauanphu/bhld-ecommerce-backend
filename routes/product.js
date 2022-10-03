@@ -20,7 +20,13 @@ router.get('/:id', async function (req, res) {
 
 router.post('/', async function (req, res) {
     await Product.add(req.body)
-    console.log('OK')
+    res.status(200).end()
+    //res.json(await Product.get_one(id));
+});
+
+router.delete('/:id', async function (req, res) {
+    const id = req.params.id
+    console.log(await Product.delete(id))
     res.status(200).end()
     //res.json(await Product.get_one(id));
 });

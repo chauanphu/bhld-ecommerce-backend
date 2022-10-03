@@ -54,6 +54,8 @@
 
 const CategoryCollection = 'products'
 const Command = require('./mongodb')
+const { ObjectId } = require('mongodb');
+
 var command = new Command(CategoryCollection)
 
 const Products = {
@@ -69,11 +71,19 @@ const Products = {
         }
     },
     async add(data) {
-        const _array_ = await command.init()
+        await command.init()
             .then(col => {
                 return col.insertOne(data)
             })
         command.close()
+    },
+    async delete(id) {
+        const _result_ = await command.init()
+            .then(col => {
+                return col.deleteOne({ "_id": ObjectId(id) })
+            })
+        command.close()
+        return _result_
     }
 }
 module.exports = Products
