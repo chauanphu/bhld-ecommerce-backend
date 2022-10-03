@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const MONGO_URL = 'mongodb://localhost:27017'
+const MONGO_URL = 'mongodb://mongo:27017'
 
 // Database Name
 const dbName = 'TGP';

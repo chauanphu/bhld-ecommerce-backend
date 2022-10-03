@@ -25,6 +25,17 @@ const Category = {
         command.close()
         return _result_
     },
+    async get_organised() {
+        const _array_ = await command.init()
+            .then(col => {
+                return col.find({}).toArray()
+            })
+        command.close()
+        return {
+            length: _array_.length,
+            data: [..._array_]
+        }
+    },
     async add(data) {
         await command.init()
             .then(col => {
