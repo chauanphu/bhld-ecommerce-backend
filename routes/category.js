@@ -4,9 +4,9 @@ var Category = require('../services/category_service')
 
 // api/categories
 router.get('/', async function (req, res) {
-    let category_id = req.query.category
-    if (category_id) {
-        var { length, data } = await Category.get_category(category_id)
+    let type = req.query.type
+    if (type == 'nested') {
+        var { length, data } = await Category.get_organised()
     } else {
         var { length, data } = await Category.get_all()
     }

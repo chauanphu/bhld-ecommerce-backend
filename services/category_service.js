@@ -5,6 +5,25 @@ const Command = require('./mongodb')
 var command = new Command(CategoryCollection)
 const { ObjectId } = require('mongodb');
 
+const nest_group = (array = []) => {
+    let new_array = []
+    // Iterate through each items
+    for (let i = 0; i < array.length; i++) {
+        // Copy each item
+        let temp_value = { ...array[i] }
+        // Split path
+        const link = temp_value.path.split('/')
+        // If there is only 1 link => Parent Link
+        if (link.length == 1) new_array.push(temp_value)
+        else {
+            // Case parent have already been added
+
+            // Case parent havent been added
+        }
+    }
+    return new_array
+}
+
 const Category = {
     async get_all() {
         const _array_ = await command.init()
@@ -31,9 +50,11 @@ const Category = {
                 return col.find({}).toArray()
             })
         command.close()
+        const nested_array = nest_group(_array_)
+        console.log(nested_array)
         return {
             length: _array_.length,
-            data: [..._array_]
+            data: [...nested_array]
         }
     },
     async add(data) {
