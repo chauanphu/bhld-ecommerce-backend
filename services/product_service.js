@@ -31,6 +31,14 @@ const Products = {
             })
         command.close()
     },
+    async update(id, data) {
+        const _result_ = await command.init()
+            .then(col => {
+                return col.updateOne({ "_id": ObjectId(id) }, { $set: data });
+            })
+        command.close()
+        return _result_
+    },
     async delete(id) {
         const _result_ = await command.init()
             .then(col => {
