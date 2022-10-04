@@ -2,9 +2,10 @@ var router = require('express').Router();
 var Product = require('../services/product_service')
 // api/products
 router.get('/', async function (req, res) {
-    let category_id = req.query.category
-    if (category_id) {
-        var { length, data } = await Product.get_category(category_id)
+    let category_path = req.query.category_path
+    console.log(category_path)
+    if (category_path) {
+        var { length, data } = await Product.get_by_category(category_path)
     } else {
         var { length, data } = await Product.get_all()
     }
@@ -19,7 +20,6 @@ router.get('/:id', async function (req, res) {
 });
 
 router.post('/', async function (req, res) {
-    console.log('Body: ', req.body)
     await Product.add(req.body)
     res.status(200).end()
 });
