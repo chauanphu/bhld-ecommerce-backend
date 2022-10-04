@@ -1,6 +1,6 @@
 // const db = require('./firebase')
 
-const CategoryCollection = 'categories'
+const CategoryCollection = 'groups'
 const Command = require('./mongodb')
 var command = new Command(CategoryCollection)
 const { ObjectId } = require('mongodb');
@@ -24,7 +24,7 @@ const nest_group = (array = []) => {
     return new_array
 }
 
-const Category = {
+const Group = {
     async get_all() {
         const _array_ = await command.init()
             .then(col => {
@@ -81,4 +81,4 @@ const Category = {
         return _result_
     }
 }
-module.exports = Category
+module.exports = Group
