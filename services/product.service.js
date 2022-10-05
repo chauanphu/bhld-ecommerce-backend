@@ -1,8 +1,4 @@
-const CategoryCollection = 'products'
-const Command = require('./mongodb')
 const { ObjectId } = require('mongodb');
-
-var command = new Command(CategoryCollection)
 
 const Products = {
     async get_all() {

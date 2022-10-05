@@ -1,9 +1,7 @@
 // const db = require('./firebase')
 
-const CategoryCollection = 'categories'
-const Command = require('./mongodb')
-var command = new Command(CategoryCollection)
 const { ObjectId } = require('mongodb');
+const CategoryModel = require('../database/category.model')
 
 const nest_group = (array = []) => {
     let new_array = []
@@ -26,11 +24,8 @@ const nest_group = (array = []) => {
 
 const Category = {
     async get_all() {
-        const _array_ = await command.init()
-            .then(col => {
-                return col.find({}).toArray()
-            })
-        command.close()
+        const _array_ = await CategoryModel.find({}).exec()
+        console.log(_array_)
         return {
             length: _array_.length,
             data: [..._array_]
@@ -51,7 +46,6 @@ const Category = {
             })
         command.close()
         const nested_array = nest_group(_array_)
-        console.log(nested_array)
         return {
             length: _array_.length,
             data: [...nested_array]
