@@ -1,15 +1,16 @@
-const { ObjectId } = require('mongodb');
+const ProductModel = require('../database/product.model')
 
 const Products = {
     async get_all() {
-        const _array_ = await command.init()
-            .then(col => {
-                return col.find({}).toArray()
-            })
-        command.close()
-        return {
-            length: _array_.length,
-            data: [..._array_]
+        try {
+            const _array_ = await ProductModel.find({}).exec()
+            return {
+                length: _array_.length,
+                data: [..._array_]
+            }
+        } catch (err) {
+            console.error(err)
+            return false
         }
     },
     /**
@@ -18,45 +19,26 @@ const Products = {
      * @returns 
      */
     async get_by_category(category) {
-        const _array_ = await command.init()
-            .then(col => {
-                return col.find({ parent_path: { $regex: category } }).toArray()
-            })
-        command.close()
+        const _array_ = await ProductModel.find({ parent_path: new RegExp(`${category}`) }).exec()
         return {
             length: _array_.length,
             data: [..._array_]
         }
     },
     async get_one(id) {
-        const _result_ = await command.init()
-            .then(col => {
-                return col.findOne({ "_id": ObjectId(id) })
-            })
-        command.close()
+        const _result_ = await ProductModel.findById(id)
         return _result_
     },
     async add(data) {
-        await command.init()
-            .then(col => {
-                return col.insertOne(data)
-            })
-        command.close()
+        let _new_ = await ProductModel.create(data)
+        return _new_
     },
     async update(id, data) {
-        const _result_ = await command.init()
-            .then(col => {
-                return col.updateOne({ "_id": ObjectId(id) }, { $set: data });
-            })
-        command.close()
+        const _result_ = await ProductModel.findByIdAndUpdate(id, data)
         return _result_
     },
     async delete(id) {
-        const _result_ = await command.init()
-            .then(col => {
-                return col.deleteOne({ "_id": ObjectId(id) })
-            })
-        command.close()
+        const _result_ = await ProductModel.findByIdAndDelete(id)
         return _result_
     }
 }
