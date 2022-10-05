@@ -4,12 +4,7 @@ var Category = require('../services/category.service')
 
 // api/categories
 router.get('/', async function (req, res) {
-    let type = req.query.type
-    if (type == 'nested') {
-        var { length, data } = await Category.get_organised()
-    } else {
-        var result = await Category.get_all()
-    }
+    var result = await Category.get_all()
     if (result) {
         res.setHeader('Content-Range', result.length)
         res.json(result.data);
