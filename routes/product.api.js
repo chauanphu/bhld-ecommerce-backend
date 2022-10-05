@@ -1,9 +1,8 @@
 var router = require('express').Router();
-var Product = require('../services/product_service')
+var Product = require('../services/product.service')
 // api/products
 router.get('/', async function (req, res) {
     let category_path = req.query.category_path
-    console.log(category_path)
     if (category_path) {
         var { length, data } = await Product.get_by_category(category_path)
     } else {
@@ -33,7 +32,7 @@ router.put('/:id', async function (req, res) {
 
 router.delete('/:id', async function (req, res) {
     const id = req.params.id
-    console.log(await Product.delete(id))
+    await Product.delete(id)
     res.status(200).end()
 });
 module.exports = router;
