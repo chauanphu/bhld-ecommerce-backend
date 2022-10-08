@@ -14,6 +14,7 @@ const ProductSchema = new mongoose.Schema({
         src: String,
         title: String
     }
-})
+}, { typeKey: '$type' }
+)
 
 module.exports = mongoose.model("products", ProductSchema)

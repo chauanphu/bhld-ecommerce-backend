@@ -16,7 +16,12 @@ router.get('/', async function (req, res) {
 // api/products/:id
 router.get('/:id', async function (req, res) {
     const id = req.params.id
-    res.json(await Product.get_one(id));
+    const type = req.query.type
+    if (type === 'shop') {
+        res.json(await Product.get_name(id));
+    } else {
+        res.json(await Product.get_one(id));
+    }
 });
 
 router.post('/', async function (req, res) {
