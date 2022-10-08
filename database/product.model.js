@@ -10,7 +10,10 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         value: String
     }],
-    sub_items: Array
+    image: {
+        src: String,
+        title: String
+    }
 })
 
 module.exports = mongoose.model("products", ProductSchema)

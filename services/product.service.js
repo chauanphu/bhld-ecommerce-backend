@@ -1,4 +1,6 @@
 const ProductModel = require('../database/product.model')
+const storageRef = require('../firebase/init')
+const { uploadBytes } = require('firebase/storage')
 
 const Products = {
     async get_all() {
@@ -30,10 +32,15 @@ const Products = {
         return _result_
     },
     async add(data) {
+        // const new_img = storageRef(data.parent_path + '/' + data.normed_name)
+        // await uploadBytes(new_img, data.image)
         let _new_ = await ProductModel.create(data)
         return _new_
     },
     async update(id, data) {
+        // const new_img = storageRef(data.parent_path + '/' + data.normed_name)
+        // await uploadBytes(new_img, data.image)
+        console.log(data)
         const _result_ = await ProductModel.findByIdAndUpdate(id, data)
         return _result_
     },

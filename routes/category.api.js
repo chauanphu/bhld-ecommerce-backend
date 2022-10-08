@@ -2,6 +2,7 @@ var router = require('express').Router();
 
 var Category = require('../services/category.service')
 
+
 // api/categories
 router.get('/', async function (req, res) {
     var result = await Category.get_all()
