@@ -5,6 +5,8 @@ var cors = require('cors')
 require('dotenv').config()
 const routes = require("./routes");
 
+require('./firebase/init')
+
 // Setup databases
 const mongoose = require('mongoose');
 const MONGO_URL = 'mongodb://mongo:27017/TGP'
@@ -17,6 +19,10 @@ mongoose.connect(MONGO_URL).then(
   })
 
 const app = express();
+
+// Set limit
+app.use(express.json({ limit: '8mb' }));
+app.use(express.urlencoded({ limit: '8mb' }));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://bhld-95d22.as.r.appspot.com/");
@@ -32,7 +38,7 @@ app.use(cors())
 //routes
 app.use("/api", routes);
 
-const port = 8000
+const port = process.env.PORT || 8000
 //set up
 app.listen(port, () => {
   console.log("Listening on port " + port);

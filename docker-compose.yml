@@ -9,9 +9,12 @@ services:
   backend:
     container_name: backend
     restart: always
+    environment:
+      PORT: 8000
     build:
       context: .
       dockerfile: Dockerfile
+    command: nodemon index.js
     volumes:
       - ./:/app
     ports:

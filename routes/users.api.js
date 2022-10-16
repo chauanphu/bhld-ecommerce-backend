@@ -1,6 +1,6 @@
 var router = require('express').Router();
 
-var Category = require('../services/category.service')
+var Category = require('../services/users.service')
 
 
 // api/categories
