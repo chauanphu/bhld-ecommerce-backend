@@ -6,7 +6,7 @@ FROM node:16.16.0
 WORKDIR /app
 
 # Copy package.json to current dir
-COPY package.json .
+COPY package*.json ./
 
 # Install all npm packages
 RUN npm install
@@ -14,7 +14,7 @@ RUN npm install
 # Install nodemon
 RUN npm install nodemon -g
 # Copy all code
-COPY . ./
+COPY . .
 
 # Export port
 EXPOSE 8000
