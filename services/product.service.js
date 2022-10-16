@@ -1,7 +1,4 @@
 const ProductModel = require('../database/product.model')
-const storageRef = require('../firebase/init')
-const { uploadBytes } = require('firebase/storage')
-const productModel = require('../database/product.model')
 
 const Products = {
     async get_all() {
