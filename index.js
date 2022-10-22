@@ -4,7 +4,6 @@ const path = require('path')
 var cors = require('cors')
 require('dotenv').config()
 const routes = require("./routes");
-
 // Setup databases
 const mongoose = require('mongoose');
 const MONGO_URL = 'mongodb://mongo:27017/TGP'

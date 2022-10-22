@@ -13,10 +13,11 @@ services:
       PORT: 8000
     build:
       context: .
-      dockerfile: Dockerfile.env
+      dockerfile: Dockerfile.dev
     command: nodemon index.js
     volumes:
       - ./:/app
+      - /app/node_modules
     ports:
       - '8000:8000'
     links:
