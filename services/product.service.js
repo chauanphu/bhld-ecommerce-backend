@@ -1,5 +1,4 @@
 const ProductModel = require('../database/product.model')
-
 const Products = {
     async get_all() {
         try {
