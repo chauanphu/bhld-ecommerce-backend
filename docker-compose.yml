@@ -9,17 +9,27 @@ services:
     volumes:
       - /db:/data/db
   backend:
-    container_name: backend
-    restart: always
+    restart: unless-stopped
     environment:
       PORT: 8000
-      REACT_APP_API: https://thietbibaoho.net/api
     image: chauanphu/bhld-tgp:latest
     command: npm run start
     volumes:
       - ./:/app
       - /app/node_modules
     ports:
-      - 80:8000
+      - 8000:8000
     links:
       - mongo
+  frontend:
+    restart: unless-stopped
+    environment:
+      REACT_APP_API: https://thietbibaoho.net/api
+    image: chauanphu/bhld-frontend:1.0.2
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+
+volumes:
+  db:

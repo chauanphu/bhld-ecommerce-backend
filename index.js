@@ -33,11 +33,11 @@ app.use(express.json());
 app.use(cors())
 
 //routes
-app.use("/api", routes);
-app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(path.join(__dirname, 'public'))
+app.use("/api/*", routes);
+
 const port = process.env.PORT || 8000
+
 //set up
 app.listen(port, () => {
   console.log("Listening on port " + port);
