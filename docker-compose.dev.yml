@@ -10,7 +10,7 @@ services:
     container_name: backend_dev
     restart: always
     environment:
-      PORT: 8000
+      MONGO_URL: ${MONGO_URL}
     build:
       context: .
       dockerfile: Dockerfile.dev

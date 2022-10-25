@@ -1,12 +1,11 @@
 const express = require("express");
 
-const path = require('path')
 var cors = require('cors')
 require('dotenv').config()
 const routes = require("./routes");
 // Setup databases
 const mongoose = require('mongoose');
-const MONGO_URL = 'mongodb://mongo:27017/TGP'
+const MONGO_URL = process.env.MONGO_URL
 
 mongoose.connect(MONGO_URL).then(
   console.log('Database Connected')
@@ -34,9 +33,7 @@ app.use(cors())
 
 //routes
 app.use("/api", routes);
-app.use(express.static(path.join(__dirname, 'public')));
 
-console.log(path.join(__dirname, 'public'))
 const port = process.env.PORT || 8000
 //set up
 app.listen(port, () => {
