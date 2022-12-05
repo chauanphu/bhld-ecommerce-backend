@@ -6,6 +6,8 @@ services:
     image: mongo
     ports:
       - '27017:27017'
+    volumes:
+      - '/db:/data/db'
   backend_dev:
     container_name: backend_dev
     restart: always
@@ -16,9 +18,11 @@ services:
       dockerfile: Dockerfile.dev
     command: nodemon index.js
     volumes:
-      - ./:/app
+      - './:/app'
       - /app/node_modules
     ports:
       - '8000:8000'
     links:
       - mongo_dev
+volumes:
+  db: null

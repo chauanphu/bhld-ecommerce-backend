@@ -6,14 +6,15 @@ const ProductSchema = new mongoose.Schema({
     parent_path: String,
     description: String,
     price: Number,
+    costPrice: Number,
     features: [{
         type: String,
         value: String
     }],
-    image: {
+    image: [{
         src: String,
         title: String
-    }
+    }]
 }, { typeKey: '$type' }
 )
 
